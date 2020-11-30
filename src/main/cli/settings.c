@@ -453,6 +453,10 @@ static const char * const lookupTableGyroFilterDebug[] = {
     "ROLL", "PITCH", "YAW"
 };
 
+static const char * const lookupTableMixerType[] = {
+    "LEGACY", "LINEAR", "DYNAMIC"
+};
+
 #define LOOKUP_TABLE_ENTRY(name) { name, ARRAYLEN(name) }
 
 const lookupTableEntry_t lookupTables[] = {
@@ -564,6 +568,7 @@ const lookupTableEntry_t lookupTables[] = {
 #endif
 
     LOOKUP_TABLE_ENTRY(lookupTableGyroFilterDebug),
+    LOOKUP_TABLE_ENTRY(lookupTableMixerType),
 };
 
 #undef LOOKUP_TABLE_ENTRY
@@ -802,6 +807,7 @@ const clivalue_t valueTable[] = {
 
 // PG_MIXER_CONFIG
     { "yaw_motors_reversed",        VAR_INT8   | MASTER_VALUE | MODE_LOOKUP, .config.lookup = { TABLE_OFF_ON }, PG_MIXER_CONFIG, offsetof(mixerConfig_t, yaw_motors_reversed) },
+    { "mixer_type",                 VAR_UINT8  | MASTER_VALUE | MODE_LOOKUP, .config.lookup = { TABLE_MIXER_TYPE }, PG_MIXER_CONFIG, offsetof(mixerConfig_t, mixer_type) },
     { "crashflip_motor_percent",    VAR_UINT8 |  MASTER_VALUE,  .config.minmaxUnsigned = { 0, 100 }, PG_MIXER_CONFIG, offsetof(mixerConfig_t, crashflip_motor_percent) },
 
 // PG_MOTOR_3D_CONFIG
